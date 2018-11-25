@@ -4,7 +4,7 @@
 #define MODULE "S001_BubbleSort"
 
 #include "S001_BubbleSort.h"
-#include "../Kits/Swapper.hpp"
+#include "Swapper.hpp"
 
 #include <iostream>
 #include <string>
@@ -35,7 +35,8 @@ void func1(int dataArr[], const int arrSize) {
     for(int i = 0; i < arrSize; i++) {
         for(int j = i + 1; j < arrSize; j++) {
             if(dataArr[i] > dataArr[j]) {
-                swap(dataArr[i], dataArr[j]);
+//                swap(dataArr[i], dataArr[j]);
+                Swapper::swap(dataArr[i], dataArr[j]);
 
                 arrayToString(dataArr, arrSize, tmpStr);
                 std::cout<<"func1:"<<(++counter)<<":"<<tmpStr<<std::endl;

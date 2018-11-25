@@ -8,9 +8,13 @@
 
 class ISorter {
 public:
+//    virtual ~ISorter() {
+//
+//    }
+
     ///@param dataArr data array to sort, input and output container
     ///@param arrSize size of dataArray
-    virtual void sort(int dataArr[], const int arrSize) = 0;
+    virtual void sort(int dataArr[], int arrSize) = 0;
 };
 
 

@@ -13,7 +13,8 @@
 
 class S001_BubbleSort : public ISorter{
 public:
-    void sort(int dataArr[], const int arrSize) override;
+    void sort(int dataArr[], int arrSize) override;
+
 //    virtual sort(int dataArray[]);
 };
 

@@ -12,14 +12,14 @@ set(srcdirs
         ${PROJECT_SOURCE_DIR}
         ${PROJECT_SOURCE_DIR}/Sort
         ${PROJECT_SOURCE_DIR}/Kits
-#        ${PROJECT_SOURCE_DIR}/Tester
+        ${PROJECT_SOURCE_DIR}/Tester
 #        ${PROJECT_SOURCE_DIR}/Temp
         )
 
 include_directories(
         ${PROJECT_SOURCE_DIR}/Sort
         ${PROJECT_SOURCE_DIR}/Kits
-#        ${PROJECT_SOURCE_DIR}/Tester
+        ${PROJECT_SOURCE_DIR}/Tester
         )
 
 #link_directories()

@@ -6,10 +6,35 @@
 #ifndef LABALGORITHM_SWAPPER_HPP
 #define LABALGORITHM_SWAPPER_HPP
 
-void swap(int& a, int& b) {
-    a = a + b;
-    b = a - b;
-    a = a - b;
-}
+class Swapper {
+public:
+    /// 注意：此处a、b不能指向同一对象，否则出错
+    static void swap(int& a, int& b) {
+        a = a + b;
+        b = a - b;
+        a = a - b;
+    }
 
+    static void swap(int* a, int* b) {
+        int tmp = *a;
+        *a = *b;
+        *b = tmp;
+    }
+
+
+//    static Swapper* getInstance();
+//private:
+//    static Swapper instance;
+//    Swapper() {
+//
+//    }
+//
+//    virtual ~Swapper(){
+//
+//    }
+};
+
+//Swapper* Swapper::getInstance() {
+//    return &instance;
+//}
 #endif //LABALGORITHM_SWAPPER_HPP
