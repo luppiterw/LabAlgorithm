@@ -6,6 +6,7 @@
 #define LABALGORITHM_TEXTUTILS_HPP
 
 #include <string>
+#include <iostream>
 
 class TextUtils {
 public:
@@ -18,6 +19,16 @@ public:
             result.append(tmpString);
         }
     }
+
+//    error
+//    static void testExtern() {
+//        std::cout<<"TextUtils => static testExtern called"<<std::endl;
+//    }
 };
+
+///error
+//void testExtern() {
+//    std::cout<<"TextUtils => testExtern called"<<std::endl;
+//};
 
 #endif //LABALGORITHM_TEXTUTILS_HPP

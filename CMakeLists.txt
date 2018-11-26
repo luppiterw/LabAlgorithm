@@ -30,6 +30,6 @@ foreach(srcdir ${srcdirs})
     aux_source_directory(${srcdir} project_source_files)
 endforeach()
 
-add_executable(LabAlgorithm ${project_source_files} Kits/TextUtils.hpp)
+add_executable(LabAlgorithm ${project_source_files})
 #target_link_libraries(LabAlgorithm sort)
 #install(TARGETS LabAlgorithm DESTINATION ${PROJECT_OUT_PUT_DIR})

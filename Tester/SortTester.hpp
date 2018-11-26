@@ -9,6 +9,7 @@
 #include "S001_BubbleSort.h"
 #include "S002_SelectionSort.h"
 #include "S003_InsertionSort.h"
+#include "S004_ShellSort.h"
 
 using namespace std;
 //class S001_BubbleSort;
@@ -28,7 +29,7 @@ public:
 //        int testArray[10] = {123, 3, 78, 56, 43, 889, 787, 4567, 22, 2};
 
         int arraySize = sizeof(testArray) / sizeof(int);
-        const int sortType = 3;
+        const int sortType = 4;
 //        S001_BubbleSort* pSorter = new S001_BubbleSort();
 //        pSorter->sort(testArray5, 5);
         switch (sortType) {
@@ -49,6 +50,11 @@ public:
                 S003_InsertionSort s003 = S003_InsertionSort();
                 s003.sort(testArray, arraySize);
                 break;
+            }
+            case 4: {
+                ///< S004 Shell Sort Ï£¶ûÅÅÐò
+                S004_ShellSort s004 = S004_ShellSort();
+                s004.sort(testArray, arraySize);
             }
 
         }

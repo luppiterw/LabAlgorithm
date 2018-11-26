@@ -3,6 +3,8 @@
 #include "SortTester.hpp"
 using namespace std;
 
+//extern void testExtern();
+
 int main() {
     cout << "Hello, World!" << endl;
 
@@ -16,6 +18,8 @@ int main() {
 //    }
 
     SortTester().Test();
+
+//    testExtern();
 //    int inputValue;
 //    do{
 //        cout << "Input your numbers" << endl;
