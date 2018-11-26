@@ -5,6 +5,7 @@
 
 #include "S001_BubbleSort.h"
 #include "Swapper.hpp"
+#include "TextUtils.hpp"
 
 #include <iostream>
 #include <string>
@@ -13,23 +14,11 @@
 //    b = a - b;
 //    a = a - b;
 //}
-
-void arrayToString(int dataArr[], int arrSize, std::string& result) {
-//    char* tmpString = new char(arrSize);
-    result.clear();
-    for(int i = 0; i < arrSize; i++) {
-        char tmpString[10] = {0};
-        sprintf_s(tmpString, "%d ", dataArr[i]);
-        result.append(tmpString);
-    }
-}
-
-
 /**
  * 从0索引的值开始，依次与之后索引中的值比对，前者大于后者则交换，一轮下来可以将最小值换至0索引位置
  * 再从1、2、3……索引依次循环即可
  * */
-void func1(int dataArr[], const int arrSize) {
+void S001_BubbleSort::func1(int dataArr[], const int arrSize) {
     int counter = 0;
     std::string tmpStr;
     for(int i = 0; i < arrSize; i++) {
@@ -38,7 +27,7 @@ void func1(int dataArr[], const int arrSize) {
 //                swap(dataArr[i], dataArr[j]);
                 Swapper::swap(dataArr[i], dataArr[j]);
 
-                arrayToString(dataArr, arrSize, tmpStr);
+                TextUtils::arrayToString(dataArr, arrSize, tmpStr);
                 std::cout<<"func1:"<<(++counter)<<":"<<tmpStr<<std::endl;
             }
         }
@@ -48,7 +37,7 @@ void func1(int dataArr[], const int arrSize) {
 /**
  * 和func1找寻最小相反，优先找到最大索引处的最大值，然后依次寻找剩余最大索引处的最大值，直至结束
  * */
-void func2(int dataArr[], const int arrSize) {
+void S001_BubbleSort::func2(int dataArr[], const int arrSize) {
     int counter = 0;
     std::string tmpStr;
     for (int i = 0; i < arrSize - 1; i++) {
@@ -58,7 +47,7 @@ void func2(int dataArr[], const int arrSize) {
                 dataArr[j+1] = dataArr[j];
                 dataArr[j] = temp;
 
-                arrayToString(dataArr, arrSize, tmpStr);
+                TextUtils::arrayToString(dataArr, arrSize, tmpStr);
                 std::cout<<"func2:"<<(++counter)<<":"<<tmpStr<<std::endl;
             }
         }

@@ -8,6 +8,7 @@
 
 #include "S001_BubbleSort.h"
 #include "S002_SelectionSort.h"
+#include "S003_InsertionSort.h"
 
 using namespace std;
 //class S001_BubbleSort;
@@ -20,17 +21,38 @@ public:
 //    }
 
     void Test() {
-        int testArray[5] = {123, 456, 78, 56, 43};
+//        int testArray[5] = {123, 456, 78, 56, 43};
 //        int testArray[10] = {123, 456, 78, 56, 43, 889, 787, 4567, 22, 4};
+//        int testArray[10] = {123, 22, 78, 56, 43, 889, 787, 4567, 22, 4};
+        int testArray[10] = {123, 1, 78, 56, 43, 889, 787, 4567, 22, 4};
+//        int testArray[10] = {123, 3, 78, 56, 43, 889, 787, 4567, 22, 2};
+
         int arraySize = sizeof(testArray) / sizeof(int);
+        const int sortType = 3;
 //        S001_BubbleSort* pSorter = new S001_BubbleSort();
 //        pSorter->sort(testArray5, 5);
-        ///< S001 Bubble Sort Ã°ÅÝÅÅÐò
-//        S001_BubbleSort s001 = S001_BubbleSort();
-//        s001.sort(testArray, arraySize);
-        ///< S002 Selection Sort Ñ¡ÔñÅÅÐò
-        S002_SelectionSort s002 = S002_SelectionSort();
-        s002.sort(testArray, arraySize);
+        switch (sortType) {
+            case 1: {
+                ///< S001 Bubble Sort Ã°ÅÝÅÅÐò
+                S001_BubbleSort s001 = S001_BubbleSort();
+                s001.sort(testArray, arraySize);
+                break;
+            }
+            case 2: {
+                ///< S002 Selection Sort Ñ¡ÔñÅÅÐò
+                S002_SelectionSort s002 = S002_SelectionSort();
+                s002.sort(testArray, arraySize);
+                break;
+            }
+            case 3: {
+                ///< S003 Insertion Sort ²åÈëÅÅÐò
+                S003_InsertionSort s003 = S003_InsertionSort();
+                s003.sort(testArray, arraySize);
+                break;
+            }
+
+        }
+
 
 //    sorter.sort(testArray10, 10);
 //    sorter.sort(inputNumbers, maxLen);
