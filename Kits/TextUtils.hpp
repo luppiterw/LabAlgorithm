@@ -20,6 +20,15 @@ public:
         }
     }
 
+//    static void arrayToString(int* dataArr, std::string& result) {
+////    char* tmpString = new char(arrSize);
+//        result.clear();
+//        for(int i = 0; i < arrSize; i++) {
+//            char tmpString[10] = {0};
+//            sprintf(tmpString, "%d ", dataArr[i]);
+//            result.append(tmpString);
+//        }
+//    }
 //    error
 //    static void testExtern() {
 //        std::cout<<"TextUtils => static testExtern called"<<std::endl;

@@ -9,6 +9,7 @@
 int S006_QuickSort::PartSort(int* array,int left,int right)
 {
     int& key = array[right];
+    int pivotIndex = right;
     while(left < right)
     {
         while(left < right && array[left] <= key)
@@ -19,9 +20,9 @@ int S006_QuickSort::PartSort(int* array,int left,int right)
         {
             --right;
         }
-        Swapper::swap(array[left],array[right]);
+        if(left < right) Swapper::swap(array[left],array[right]);
     }
-    Swapper::swap(array[left],key);
+    if(left == right) Swapper::swap(array[left],array[pivotIndex]);
     return left;
 }
 void S006_QuickSort::QuickSort(int* array,int left,int right)
@@ -37,8 +38,8 @@ void S006_QuickSort::QuickSort(int* array,int left,int right)
 void S006_QuickSort::sort(int *dataArr, int arrSize) {
     counter = 0;
 //    func1(dataArr, arrSize);
-//    func2(dataArr, arrSize);
-    QuickSort(dataArr, 0, arrSize - 1);
+    func2(dataArr, arrSize);
+//    QuickSort(dataArr, 0, arrSize - 1);
 }
 /**
  * @param dataArr 所有数据
@@ -131,37 +132,32 @@ void S006_QuickSort::func2_sort(int *dataArr, int start, int end) {
 }
 
 void S006_QuickSort::func2_sort_2(int *dataArr, int pivotIndex, int start, int end) {
-    std::cout<<"func2_sort_2 start="<<start<<" end="<<end<<std::endl;
-
     if(start >= end) return;
+    std::string tmpStr;
+
     const int pivotData = dataArr[pivotIndex];
     int leftIndex = start;
     int rightIndex = end;
     while(leftIndex < rightIndex) {
-        std::cout<<"00 "<<leftIndex<< " right=" <<rightIndex <<std::endl;
-
-
         while(leftIndex < rightIndex && dataArr[leftIndex] <= pivotData) {
-            std::cout<<"11"<<std::endl;
-            ++leftIndex;
+            leftIndex ++;
         }
         while(leftIndex < rightIndex && dataArr[rightIndex] >= pivotData) {
-            std::cout<<"22"<<std::endl;
-            --rightIndex;
+            rightIndex --;
         }
-        Swapper::swap(dataArr[leftIndex], dataArr[rightIndex]);
-        std::cout<<"33"<<std::endl;
+        if(leftIndex < rightIndex) Swapper::swap(dataArr[leftIndex], dataArr[rightIndex]);
+
+        TextUtils::arrayToString(dataArr, 10, tmpStr);
+        std::cout<<"func2_sort_2:"<<(++counter)<<":"<<tmpStr<<" pivot="<<pivotData<<std::endl;
 
     }
     Swapper::swap(dataArr[leftIndex], dataArr[pivotIndex]);
-    std::cout<<"44"<<std::endl;
+
+    TextUtils::arrayToString(dataArr, 10, tmpStr);
+    std::cout<<"func2_sort_2:"<<(++counter)<<":"<<tmpStr<<std::endl;
 
     func2_sort_2(dataArr, start, start, leftIndex - 1);
-    std::cout<<"55"<<std::endl;
-
     func2_sort_2(dataArr, leftIndex + 1, leftIndex + 1, end);
-    std::cout<<"66"<<std::endl;
-
 //    int& pivot = dataArr[pivotIndex];
 }
 
