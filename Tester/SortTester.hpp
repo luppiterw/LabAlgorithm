@@ -10,6 +10,7 @@
 #include "S002_SelectionSort.h"
 #include "S003_InsertionSort.h"
 #include "S004_ShellSort.h"
+#include "S005_MergeSort.h"
 
 using namespace std;
 //class S001_BubbleSort;
@@ -29,36 +30,38 @@ public:
 //        int testArray[10] = {123, 3, 78, 56, 43, 889, 787, 4567, 22, 2};
 
         int arraySize = sizeof(testArray) / sizeof(int);
-        const int sortType = 4;
+        const int sortType = 5;
 //        S001_BubbleSort* pSorter = new S001_BubbleSort();
 //        pSorter->sort(testArray5, 5);
+        ISorter* pSorter;
         switch (sortType) {
             case 1: {
                 ///< S001 Bubble Sort Ã°ÅÝÅÅÐò
-                S001_BubbleSort s001 = S001_BubbleSort();
-                s001.sort(testArray, arraySize);
+                pSorter = new S001_BubbleSort();
                 break;
             }
             case 2: {
                 ///< S002 Selection Sort Ñ¡ÔñÅÅÐò
-                S002_SelectionSort s002 = S002_SelectionSort();
-                s002.sort(testArray, arraySize);
+                pSorter = new S002_SelectionSort();
                 break;
             }
             case 3: {
                 ///< S003 Insertion Sort ²åÈëÅÅÐò
-                S003_InsertionSort s003 = S003_InsertionSort();
-                s003.sort(testArray, arraySize);
+                pSorter = new S003_InsertionSort();
                 break;
             }
             case 4: {
                 ///< S004 Shell Sort Ï£¶ûÅÅÐò
-                S004_ShellSort s004 = S004_ShellSort();
-                s004.sort(testArray, arraySize);
+                pSorter = new S004_ShellSort();
+                break;
             }
-
+            case 5: {
+                ///< S005 Merge Sort ¹é²¢ÅÅÐò
+                pSorter = new S005_MergeSort();
+                break;
+            }
         }
-
+        if(pSorter != nullptr) pSorter->sort(testArray, arraySize);
 
 //    sorter.sort(testArray10, 10);
 //    sorter.sort(inputNumbers, maxLen);
