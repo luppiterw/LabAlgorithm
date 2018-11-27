@@ -11,6 +11,7 @@
 #include "S003_InsertionSort.h"
 #include "S004_ShellSort.h"
 #include "S005_MergeSort.h"
+#include "S006_QuickSort.h"
 
 using namespace std;
 //class S001_BubbleSort;
@@ -26,11 +27,13 @@ public:
 //        int testArray[5] = {123, 456, 78, 56, 43};
 //        int testArray[10] = {123, 456, 78, 56, 43, 889, 787, 4567, 22, 4};
 //        int testArray[10] = {123, 22, 78, 56, 43, 889, 787, 4567, 22, 4};
-        int testArray[10] = {123, 1, 78, 56, 43, 889, 787, 4567, 22, 4};
+//        int testArray[10] = {123, 1, 78, 56, 43, 889, 787, 4567, 22, 4};
+        int testArray[10] = {123, 11, 78, 1, 43, 889, 787, 4567, 22, 4};
+
 //        int testArray[10] = {123, 3, 78, 56, 43, 889, 787, 4567, 22, 2};
 
         int arraySize = sizeof(testArray) / sizeof(int);
-        const int sortType = 5;
+        const int sortType = 6;
 //        S001_BubbleSort* pSorter = new S001_BubbleSort();
 //        pSorter->sort(testArray5, 5);
         ISorter* pSorter;
@@ -58,6 +61,11 @@ public:
             case 5: {
                 ///< S005 Merge Sort ¹é²¢ÅÅÐò
                 pSorter = new S005_MergeSort();
+                break;
+            }
+            case 6: {
+                ///< S006 Quick Sort ¿ìËÙÅÅÐò
+                pSorter = new S006_QuickSort();
                 break;
             }
         }
