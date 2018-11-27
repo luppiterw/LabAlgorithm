@@ -26,6 +26,9 @@ private:
     void func1_sort(int *dataArr, int pivotAnchorIndex, int startIndex, int endIndex, int arrSize);
     int counter;
 
+    ///< ×óÓÒÖ¸Õë·¨
+    void func2(int *dataArr, int arrSize);
+    void func2_sort(int *dataArr, int pivotIndex, int leftIndex, int rightIndex);
 };
 
 
