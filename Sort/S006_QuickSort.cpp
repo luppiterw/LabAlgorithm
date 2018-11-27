@@ -6,11 +6,39 @@
 #include "TextUtils.hpp"
 #include "Swapper.hpp"
 
+int S006_QuickSort::PartSort(int* array,int left,int right)
+{
+    int& key = array[right];
+    while(left < right)
+    {
+        while(left < right && array[left] <= key)
+        {
+            ++left;
+        }
+        while(left < right && array[right] >= key)
+        {
+            --right;
+        }
+        Swapper::swap(array[left],array[right]);
+    }
+    Swapper::swap(array[left],key);
+    return left;
+}
+void S006_QuickSort::QuickSort(int* array,int left,int right)
+{
+    if(left >= right)//表示已经完成一个组
+    {
+        return;
+    }
+    int index = PartSort(array,left,right);//枢轴的位置
+    QuickSort(array,left,index - 1);
+    QuickSort(array,index + 1,right);
+}
 void S006_QuickSort::sort(int *dataArr, int arrSize) {
     counter = 0;
 //    func1(dataArr, arrSize);
-    func2(dataArr, arrSize);
-
+//    func2(dataArr, arrSize);
+    QuickSort(dataArr, 0, arrSize - 1);
 }
 /**
  * @param dataArr 所有数据
@@ -64,7 +92,8 @@ void S006_QuickSort::func1(int *dataArr, int arrSize) {
  * */
 void S006_QuickSort::func2(int *dataArr, int arrSize) {
     ///< 以左索引作为中心参考值
-    func2_sort(dataArr, 0, 0, arrSize - 1);
+//    func2_sort(dataArr, 0, arrSize - 1);
+    func2_sort_2(dataArr, 0, 0, arrSize - 1);
 }
 /**
  * 左右指针法 https://blog.csdn.net/qq_36528114/article/details/78667034
@@ -72,14 +101,14 @@ void S006_QuickSort::func2(int *dataArr, int arrSize) {
  * 设置两个变量left = 0;right = N - 1
  * 从left一直向后走，直到找到一个大于key的值，right从后至前，直至找到一个小于key的值，然后交换这两个数。
  * 重复第三步，一直往后找，直到left和right相遇，这时将key放置left的位置即可。
+ *
  * */
-void S006_QuickSort::func2_sort(int *dataArr, int pivotIndex, int start, int end) {
+void S006_QuickSort::func2_sort(int *dataArr, int start, int end) {
     if(start >= end) return;
 
     int leftIndex = start;
     int rightIndex = end;
-    static int counter = 0;
-    const int pivotData = dataArr[start];
+    const int pivotData = dataArr[start];   ///< 使用start作为pivot
     while(leftIndex < rightIndex) {
         ///< 右指针值大于参考值，则一直左移
         while(leftIndex < rightIndex && dataArr[rightIndex] >= pivotData){
@@ -92,17 +121,48 @@ void S006_QuickSort::func2_sort(int *dataArr, int pivotIndex, int start, int end
             ++ leftIndex;
         }
         dataArr[rightIndex] = dataArr[leftIndex];
-
-        ///< 交换左右指针值
-
-
 //        Swapper::swap(dataArr[leftIndex], dataArr[rightIndex]);
     }
     dataArr[leftIndex] = pivotData;
     ///< 此时左右指针指向同一位置
-//    Swapper::swap(dataArr[leftIndex], dataArr[pivotIndex]);
     ///< 递归完成左、右部分，此时参考点索引为leftIndex
-    func2_sort(dataArr, start, start, leftIndex - 1);
-    func2_sort(dataArr, leftIndex + 1, leftIndex + 1, end);
+    func2_sort(dataArr, start, leftIndex - 1);
+    func2_sort(dataArr, leftIndex + 1, end);
 }
+
+void S006_QuickSort::func2_sort_2(int *dataArr, int pivotIndex, int start, int end) {
+    std::cout<<"func2_sort_2 start="<<start<<" end="<<end<<std::endl;
+
+    if(start >= end) return;
+    const int pivotData = dataArr[pivotIndex];
+    int leftIndex = start;
+    int rightIndex = end;
+    while(leftIndex < rightIndex) {
+        std::cout<<"00 "<<leftIndex<< " right=" <<rightIndex <<std::endl;
+
+
+        while(leftIndex < rightIndex && dataArr[leftIndex] <= pivotData) {
+            std::cout<<"11"<<std::endl;
+            ++leftIndex;
+        }
+        while(leftIndex < rightIndex && dataArr[rightIndex] >= pivotData) {
+            std::cout<<"22"<<std::endl;
+            --rightIndex;
+        }
+        Swapper::swap(dataArr[leftIndex], dataArr[rightIndex]);
+        std::cout<<"33"<<std::endl;
+
+    }
+    Swapper::swap(dataArr[leftIndex], dataArr[pivotIndex]);
+    std::cout<<"44"<<std::endl;
+
+    func2_sort_2(dataArr, start, start, leftIndex - 1);
+    std::cout<<"55"<<std::endl;
+
+    func2_sort_2(dataArr, leftIndex + 1, leftIndex + 1, end);
+    std::cout<<"66"<<std::endl;
+
+//    int& pivot = dataArr[pivotIndex];
+}
+
 

@@ -28,7 +28,10 @@ private:
 
     ///< ×óÓÒÖ¸Õë·¨
     void func2(int *dataArr, int arrSize);
-    void func2_sort(int *dataArr, int pivotIndex, int leftIndex, int rightIndex);
+    void func2_sort(int *dataArr, int leftIndex, int rightIndex);
+    void func2_sort_2(int *dataArr, int pivotIndex, int leftIndex, int rightIndex);
+    void QuickSort(int* array,int left,int right);
+    int PartSort(int* array,int left,int right);
 };
 
 
