@@ -6,46 +6,17 @@
 #include "TextUtils.hpp"
 #include "Swapper.hpp"
 
-int S006_QuickSort::PartSort(int* array,int left,int right)
-{
-    int& key = array[right];
-    int pivotIndex = right;
-    while(left < right)
-    {
-        while(left < right && array[left] <= key)
-        {
-            ++left;
-        }
-        while(left < right && array[right] >= key)
-        {
-            --right;
-        }
-        if(left < right) Swapper::swap(array[left],array[right]);
-    }
-    if(left == right) Swapper::swap(array[left],array[pivotIndex]);
-    return left;
-}
-void S006_QuickSort::QuickSort(int* array,int left,int right)
-{
-    if(left >= right)//表示已经完成一个组
-    {
-        return;
-    }
-    int index = PartSort(array,left,right);//枢轴的位置
-    QuickSort(array,left,index - 1);
-    QuickSort(array,index + 1,right);
-}
 void S006_QuickSort::sort(int *dataArr, int arrSize) {
     counter = 0;
 //    func1(dataArr, arrSize);
     func2(dataArr, arrSize);
-//    QuickSort(dataArr, 0, arrSize - 1);
 }
 /**
  * @param dataArr 所有数据
  * @param pivotAnchorIndex 当前循环pivot基准值对应的索引（固定）
  * @param startIndex 当前循环基准值处理的起始索引
  * @param endIndex 当前循环基准值处理的终止索引
+ * 以下实现有误！
  * */
 void S006_QuickSort::func1_sort(int *dataArr, int pivotAnchorIndex, int startIndex, int endIndex, int arrSize) {
     int curPivotIndex = pivotAnchorIndex;
@@ -93,9 +64,12 @@ void S006_QuickSort::func1(int *dataArr, int arrSize) {
  * */
 void S006_QuickSort::func2(int *dataArr, int arrSize) {
     ///< 以左索引作为中心参考值
-//    func2_sort(dataArr, 0, arrSize - 1);
-    func2_sort_2(dataArr, 0, 0, arrSize - 1);
+    func2_sort(dataArr, 0, arrSize - 1);
+//    func2_sort_2(dataArr, 0, 0, arrSize - 1);
+//    testPartition(dataArr, 0, arrSize - 1);
 }
+
+
 /**
  * 左右指针法 https://blog.csdn.net/qq_36528114/article/details/78667034
  * 选取一个关键字(key)作为枢轴，一般取整组记录的第一个数/最后一个，这里采用选取序列最后一个数为枢轴。
@@ -115,6 +89,7 @@ void S006_QuickSort::func2_sort(int *dataArr, int start, int end) {
         while(leftIndex < rightIndex && dataArr[rightIndex] >= pivotData){
             -- rightIndex;
         }
+        ///< 注意，此处基于使用leftIndex起始位置作为基准值，如不是，不可以如此
         dataArr[leftIndex] = dataArr[rightIndex];
 
         ///< 左指针值小于参考值，则一直右移
@@ -131,34 +106,67 @@ void S006_QuickSort::func2_sort(int *dataArr, int start, int end) {
     func2_sort(dataArr, leftIndex + 1, end);
 }
 
+/**
+ * 以下实现有误
+ * */
 void S006_QuickSort::func2_sort_2(int *dataArr, int pivotIndex, int start, int end) {
-    if(start >= end) return;
-    std::string tmpStr;
-
-    const int pivotData = dataArr[pivotIndex];
-    int leftIndex = start;
-    int rightIndex = end;
-    while(leftIndex < rightIndex) {
-        while(leftIndex < rightIndex && dataArr[leftIndex] <= pivotData) {
-            leftIndex ++;
-        }
-        while(leftIndex < rightIndex && dataArr[rightIndex] >= pivotData) {
-            rightIndex --;
-        }
-        if(leftIndex < rightIndex) Swapper::swap(dataArr[leftIndex], dataArr[rightIndex]);
-
-        TextUtils::arrayToString(dataArr, 10, tmpStr);
-        std::cout<<"func2_sort_2:"<<(++counter)<<":"<<tmpStr<<" pivot="<<pivotData<<std::endl;
-
-    }
-    Swapper::swap(dataArr[leftIndex], dataArr[pivotIndex]);
-
-    TextUtils::arrayToString(dataArr, 10, tmpStr);
-    std::cout<<"func2_sort_2:"<<(++counter)<<":"<<tmpStr<<std::endl;
-
-    func2_sort_2(dataArr, start, start, leftIndex - 1);
-    func2_sort_2(dataArr, leftIndex + 1, leftIndex + 1, end);
+//    if(start >= end) return;
+//    std::string tmpStr;
+//
+//    const int pivotData = dataArr[pivotIndex];
+//    int leftIndex = start;
+//    int rightIndex = end;
+//    while(leftIndex < rightIndex) {
+//        while(leftIndex < rightIndex && dataArr[leftIndex] <= pivotData) {
+//            leftIndex ++;
+//        }
+//        while(leftIndex < rightIndex && dataArr[rightIndex] >= pivotData) {
+//            rightIndex --;
+//        }
+//
+//        if(leftIndex >= rightIndex) break;
+//
+//        Swapper::swap(dataArr[leftIndex], dataArr[rightIndex]);
+//
+//        TextUtils::arrayToString(dataArr, 10, tmpStr);
+//        std::cout<<"func2_sort_2:"<<(++counter)<<":"<<tmpStr<<" pivot="<<pivotData<<std::endl;
+//
+//    }
+//    Swapper::swap(dataArr[leftIndex], dataArr[pivotIndex]);
+//
+//    TextUtils::arrayToString(dataArr, 10, tmpStr);
+//    std::cout<<"func2_sort_2:"<<(++counter)<<":"<<tmpStr<<" over "<< pivotData<<std::endl;
+//
+//    func2_sort_2(dataArr, start, start, leftIndex - 1);
+//    func2_sort_2(dataArr, leftIndex + 1, leftIndex + 1, end);
 //    int& pivot = dataArr[pivotIndex];
 }
 
-
+//以下注释部分算法有误
+//static int testPartition(int *dataArr, int low, int high) {
+//    int i = low, j = high + 1;  ///< 左右扫描指针
+//    int v = dataArr[low];   ///< 中轴元素
+//    // i,j扫描数组
+//    while(true) {
+//        while(dataArr[++i] < v) {
+//            if(i == high) break;
+//        }
+//        while(dataArr[--j] > v) {
+//            if(j == low) break;
+//        }
+//        if(i >= j) break;
+//
+//
+//        Swapper::swap(dataArr, i, j);
+//    }
+//    Swapper::swap(dataArr, low, j);
+//
+//    return j;
+//}
+//
+//static void testQuickSort(int *dataArr, int low, int high) {
+//    if(low >= high) return;
+//    int j = testPartition(dataArr, low, high);
+//    testQuickSort(dataArr, low, j - 1);
+//    testQuickSort(dataArr, j + 1, high);
+//}

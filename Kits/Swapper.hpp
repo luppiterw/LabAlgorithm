@@ -15,13 +15,24 @@ public:
         a = a - b;
     }
 
+
     static void swap(int* a, int* b) {
         int tmp = *a;
         *a = *b;
         *b = tmp;
     }
 
+    static void swap(int *arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
 
+//    static void swap(int arr[], int i, int j) {
+//        int tmp = arr[i];
+//        arr[i] = arr[j];
+//        arr[j] = tmp;
+//    }
 //    static Swapper* getInstance();
 //private:
 //    static Swapper instance;
