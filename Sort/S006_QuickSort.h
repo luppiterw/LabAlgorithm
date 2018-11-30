@@ -31,6 +31,8 @@ private:
     void func2_sort(int *dataArr, int leftIndex, int rightIndex);
     void func2_sort_2(int *dataArr, int pivotIndex, int leftIndex, int rightIndex);
 
+    ///< todo 挖坑法
+    ///< todo 前后指针法
 };
 
 
